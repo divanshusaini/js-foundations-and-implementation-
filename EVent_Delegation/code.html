@@ -39,18 +39,21 @@ let gp=document.querySelector("#gp");
 let parent=document.querySelector("#parent");
 let child=document.querySelector("#child");
 
-gp.addEventListener("click",()=>{
+// just log event object and it have all the info in it so add event listener only to top most element  "See in Target"
+gp.addEventListener("click",(e)=>{
     console.log("grand parent is clicked");
-    
+    console.log(e);
 });
-parent.addEventListener("click",()=>{
-    console.log(" parent is clicked");
+// parent.addEventListener("click",()=>{
+//     console.log(" parent is clicked");
     
-});
-child.addEventListener("click",()=>{
-    console.log("child is clicked");
+// });
+// child.addEventListener("click",()=>{
+//     console.log("child is clicked");
     
-});
+// });
+
+
 
 
     </script>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OneNote</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+.canvas{
+    height: 100vh;
+    width: 100vw;
+    background-color: beige;
+    position: absolute;
+}
+    </style>
+</head>
+<body>
+    <canvas class="canvas">
+
+    </canvas>
+</body>
+<script>
+  const canvas = document.querySelector(".canvas");
+const ctx = canvas.getContext("2d");
+
+// 1. MATCH RESOLUTION (Crucial for correct mouse tracking)
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+// 2. BRUSH SETTINGS
+ctx.lineWidth = 3;           // Thickness
+ctx.lineCap = "round";       // Smooth ends
+ctx.lineJoin = "round";      // Smooth corners
+ctx.strokeStyle = "#333";    // Dark grey color
+
+let isDrawing = false;
+
+canvas.addEventListener("mousedown", (e) => {
+    isDrawing = true;
+    ctx.beginPath(); 
+    // Uses the actual mouse coordinates on the canvas
+    ctx.moveTo(e.clientX, e.clientY);
+});
+
+canvas.addEventListener("mousemove", (e) => {
+    if (!isDrawing) return;
+
+    ctx.lineTo(e.clientX, e.clientY);
+    ctx.stroke();
+});
+
+canvas.addEventListener("mouseup", () => {
+    isDrawing = false;
+});
+
+canvas.addEventListener("mouseleave", () => {
+    isDrawing = false;
+});
+</script>
+</html>
